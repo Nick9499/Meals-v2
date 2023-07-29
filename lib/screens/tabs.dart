@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/providers/favourites_provider.dart';
 import 'package:meals/providers/meals_providers.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
@@ -99,8 +100,9 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     );
 
     if (_selectedPageIndex == 1) {
+      final favouriteMeals = ref.watch(favouriteMealssProvider);
       activePage = MealsScreen(
-        meals: _favouriteMeals,
+        meals: favouriteMeals,
         onToggleFavourite: _toggleMealFavouriteStatus,
       );
     }
